@@ -26,6 +26,13 @@ Game::Game() : window(sf::VideoMode(854, 480), "Engine"){
 	}
 }
 
+Game::~Game(){
+	while(!this->states.empty()){
+		delete this->states.top();
+		this->states.pop();
+	}
+}
+
 void Game::updateDt(){
 	/* Update edilen her bir kare arasında geçen süres hesaplanır. */
 
@@ -50,27 +57,47 @@ void Game::processEvents(){
 	sf::Event event;
 	while(window.pollEvent(event)){
 		// Window close
-		switch(event.type){
-		case sf::Event::Closed:
+		if(event.type == sf::Event::Closed){
 			window.close();
-			break;
-		default:
-			break;
+		}
+		if(this->states.empty()){
+			window.close();
 		}
 	}
 }
 
 void Game::start(){
 	// Init something
+	this->initStates();
+
 }
 
 void Game::update(){
 	player.update(dt);
+	if(!this->states.empty()){
+		this->states.top()->update(dt);
+
+		if(this->states.top()->getQuit()){
+			this->states.top()->endState();
+			delete this->states.top();
+			this->states.pop();
+		}
+
+	} 
 }
 
 void Game::render(){
-	window.clear();
-	window.draw(player);
-	window.display();
+	this->window.clear();
+	this->window.draw(player);
+
+	if(!this->states.empty()){
+		this->window.draw(*this->states.top());
+	}
+	
+	this->window.display();
+}
+
+void Game::initStates(){
+	this->states.push(new GameState());
 }
 
