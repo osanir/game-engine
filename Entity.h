@@ -15,4 +15,3 @@ private:
 	sf::RectangleShape shape;
 
 };
-
