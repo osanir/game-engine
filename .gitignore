@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+
+.vs
+.git
+
+Debug/
+x64/
+GameEngine/Debug/
+GameEngine/x64
