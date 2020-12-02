@@ -1,7 +1,29 @@
 #include "Game.h"
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <iostream>
 
 Game::Game() : window(sf::VideoMode(854, 480), "Engine"){
-	this->window.setFramerateLimit(120);
+	std::ifstream ifs("Config/Window.config");
+
+	std::string title = "None";
+	sf::VideoMode window_bounds(854, 480);
+	unsigned frame_limit = 120;
+	bool vertical_sync_enabled = false;
+
+	if( ifs.is_open() ){
+		std::getline(ifs, title);
+		ifs >> window_bounds.width >> window_bounds.height;
+		ifs >> frame_limit;
+		ifs >> vertical_sync_enabled;
+
+		this->window.setTitle(title);
+		this->window.setFramerateLimit(frame_limit);
+		this->window.setVerticalSyncEnabled(vertical_sync_enabled);
+	} else{
+		// std::cout << "File Error: Could not open file" << std::endl;
+	}
 }
 
 void Game::updateDt(){
