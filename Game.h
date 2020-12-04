@@ -15,21 +15,26 @@ public:
 	Game();
 	~Game();
 
+	void addState(State* state);
+	void addEntity(Entity* entity);
+
 	void run();
 	void start();
 	void processEvents();
 	void updateDt();
 	void update();
 	void render();
+	float dt;
 private:
 	// Initialization
 	void initStates();
 
 	sf::Clock dtClock;
-	float dt;
 
 	sf::RenderWindow window;
-	Entity player;
 
 	std::stack<State*> states;
+
+	bool newObjectsWillBeAdded = false;
+	vector<Entity*> newEntities;
 };

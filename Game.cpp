@@ -5,6 +5,7 @@
 #include <iostream>
 
 Game::Game() : window(sf::VideoMode(854, 480), "Engine"){
+	this->dt = this->dtClock.restart().asSeconds();
 	std::ifstream ifs("Config/Window.config");
 
 	std::string title = "None";
@@ -33,8 +34,16 @@ Game::~Game(){
 	}
 }
 
+void Game::addState(State* state){
+	this->states.push(state);
+}
+
+void Game::addEntity(Entity* entity){
+	this->newEntities.push_back(entity);
+}
+
 void Game::updateDt(){
-	/* Update edilen her bir kare arasýnda geçen süres hesaplanýr. */
+	/* Calculates the elapsed time between two sequential frames. */
 
 	this->dt = this->dtClock.restart().asSeconds();
 	// This shows elapsed time between two frames
@@ -69,11 +78,16 @@ void Game::processEvents(){
 void Game::start(){
 	// Init something
 	this->initStates();
+	if(!this->states.empty()){
+		this->states.top()->addEntity(new Entity());
+		for(auto* newEntity : this->newEntities){
+			this->states.top()->addEntity(newEntity);
+		}
+	}
 
 }
 
 void Game::update(){
-	player.update(dt);
 	if(!this->states.empty()){
 		this->states.top()->update(dt);
 
@@ -88,7 +102,6 @@ void Game::update(){
 
 void Game::render(){
 	this->window.clear();
-	this->window.draw(player);
 
 	if(!this->states.empty()){
 		this->window.draw(*this->states.top());
@@ -98,6 +111,8 @@ void Game::render(){
 }
 
 void Game::initStates(){
-	this->states.push(new GameState());
+	if(this->states.empty()){
+		this->states.push(new GameState());
+	}
 }
 

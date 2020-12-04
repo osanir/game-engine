@@ -16,8 +16,21 @@ void GameState::updateKeybinds(const float& dt){
 
 void GameState::update(const float& dt){
 	this->updateKeybinds(dt);
+	this->updateEntities(dt);
 }
 
 void GameState::draw(sf::RenderTarget& target, sf::RenderStates states) const{
+	this->drawEntities(target, states);
+}
 
+void GameState::drawEntities(sf::RenderTarget& target, sf::RenderStates states) const{
+	for(auto *entity : this->entities){
+		target.draw(*entity);
+	}
+}
+
+void GameState::updateEntities(const float& dt) const{
+	for(auto entity : this->entities){
+		entity->update(dt);
+	}
 }

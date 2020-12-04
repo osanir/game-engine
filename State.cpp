@@ -16,3 +16,8 @@ void State::checkForQuit(){
 		this->quit = true;
 	}
 }
+
+void State::addEntity(Entity* entity){
+	this->entities.push_back(entity);
+}
+

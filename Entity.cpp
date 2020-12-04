@@ -9,6 +9,15 @@ Entity::Entity(){
 	this->movementSpeed = 300;
 }
 
+Entity::Entity(sf::Vector2f position, sf::Vector2f size, sf::Color color){
+	this->shape.setPosition(position);
+	this->shape.setSize(size);
+	this->shape.setFillColor(color);
+
+	this->movement = sf::Vector2f(0, 0);
+	this->movementSpeed = 300;
+}
+
 /*
 void Entity::render(sf::RenderTarget &target){
 	target.draw(this->shape);
