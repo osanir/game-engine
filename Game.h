@@ -4,9 +4,9 @@
 #include <SFML/System.hpp>
 
 #include <iostream>
+#include "TopDown.h"
 #include "Entity.h"
 #include "GameState.h"
-
 using namespace std;
 
 class Game{
@@ -17,15 +17,16 @@ public:
 
 	void addState(State* state);
 	void addEntity(Entity* entity);
-
 	void run();
+
+
+private:
 	void start();
 	void processEvents();
 	void updateDt();
 	void update();
 	void render();
 	float dt;
-private:
 	// Initialization
 	void initStates();
 

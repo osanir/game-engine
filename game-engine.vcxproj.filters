@@ -33,6 +33,12 @@
     <ClCompile Include="GameState.cpp">
       <Filter>States</Filter>
     </ClCompile>
+    <ClCompile Include="Behaivor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TopDown.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -45,6 +51,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Behaivor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TopDown.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

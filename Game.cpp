@@ -25,6 +25,8 @@ Game::Game() : window(sf::VideoMode(854, 480), "Engine"){
 	} else{
 		// std::cout << "File Error: Could not open file" << std::endl;
 	}
+
+	ifs.close();
 }
 
 Game::~Game(){
@@ -79,7 +81,6 @@ void Game::start(){
 	// Init something
 	this->initStates();
 	if(!this->states.empty()){
-		this->states.top()->addEntity(new Entity());
 		for(auto* newEntity : this->newEntities){
 			this->states.top()->addEntity(newEntity);
 		}

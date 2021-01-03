@@ -9,13 +9,12 @@ Entity::Entity(){
 	this->movementSpeed = 300;
 }
 
-Entity::Entity(sf::Vector2f position, sf::Vector2f size, sf::Color color){
+Entity::Entity(sf::Vector2f position, sf::Vector2f size, sf::Color color, float speed){
 	this->shape.setPosition(position);
 	this->shape.setSize(size);
 	this->shape.setFillColor(color);
-
 	this->movement = sf::Vector2f(0, 0);
-	this->movementSpeed = 300;
+	this->movementSpeed = speed;
 }
 
 /*
@@ -24,35 +23,13 @@ void Entity::render(sf::RenderTarget &target){
 }
 */
 
-void Entity::update(float dt){
-	handlePlayerInput();
-	this->shape.move(movement * dt * movementSpeed);
+//void Entity::update(float dt){
+//	//handlePlayerInput();
+//	//this->shape.move(movement * dt * movementSpeed);
+//
+//}
 
-}
 
-
-void Entity::handlePlayerInput() {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-		movement.x = 1;
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-		movement.x = -1;
-	}
-	else {
-		movement.x = 0;
-	}
-	
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-		movement.y = -1;
-	} 
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-		movement.y = 1;
-	}
-	else {
-		movement.y = 0;
-	}
-
-}
 
 void Entity::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(this->shape, states);
