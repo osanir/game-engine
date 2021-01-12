@@ -2,7 +2,9 @@
 
 class Player : public Entity{
 public:
-	Player() : Entity(sf::Vector2f(50, 50), sf::Vector2f(50, 50), sf::Color::Yellow, 400)
+	/*
+		Player() :
+		Entity(sf::Vector2f(50, 50), sf::Vector2f(50, 50), sf::Color::Yellow, 400)
 		,topDown(this)
 	{
 	}
@@ -11,6 +13,14 @@ public:
 		: Entity(position, size, color, speed)
 		, topDown(this){
 	
+	}
+	//*/
+
+	Player(std::string fileName)
+		:Entity(fileName)
+		,topDown(this)
+	{
+
 	}
 
 	void update(float dt){
@@ -21,7 +31,7 @@ public:
 
 int main(){
 	Game game;
-	Entity* entity = new Player;
+	Entity* entity = new Player("player.png");
 	game.addEntity(entity);
 	game.run();
 	return 0;

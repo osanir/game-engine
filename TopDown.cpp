@@ -1,5 +1,13 @@
 #include "TopDown.h"
 
+sf::Vector2f normalize(sf::Vector2f source){
+	float length = sqrt((source.x * source.x) + (source.y * source.y));
+	if(length != 0)
+		return sf::Vector2f(source.x / length, source.y / length);
+	else
+		return source;
+}
+
 TopDown::TopDown(Entity *entity) : Behaivor(entity){
 	
 }
@@ -26,4 +34,5 @@ void TopDown::handlePlayerInput(){
 		entity->movement.y = 0;
 	}
 
+	entity->movement = normalize(entity->movement);
 }
