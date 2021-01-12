@@ -1,9 +1,9 @@
 #pragma once
 #include "Entity.h"
 
-class Behaivor{
+class Behavior{
 public:
-	Behaivor(Entity *entity);
+	Behavior(Entity *entity);
 	Entity* entity;
 	virtual void update(float dt) = 0;
 private:

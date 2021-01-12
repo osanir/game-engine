@@ -183,7 +183,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Behaivor.cpp" />
+    <ClCompile Include="Behavior.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
@@ -192,7 +192,7 @@
     <ClCompile Include="TopDown.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Behaivor.h" />
+    <ClInclude Include="Behavior.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />

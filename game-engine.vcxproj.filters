@@ -33,10 +33,10 @@
     <ClCompile Include="GameState.cpp">
       <Filter>States</Filter>
     </ClCompile>
-    <ClCompile Include="Behaivor.cpp">
+    <ClCompile Include="TopDown.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TopDown.cpp">
+    <ClCompile Include="Behavior.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,10 +53,10 @@
     <ClInclude Include="GameState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Behaivor.h">
+    <ClInclude Include="TopDown.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TopDown.h">
+    <ClInclude Include="Behavior.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

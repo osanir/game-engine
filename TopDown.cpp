@@ -8,7 +8,7 @@ sf::Vector2f normalize(sf::Vector2f source){
 		return source;
 }
 
-TopDown::TopDown(Entity *entity) : Behaivor(entity){
+TopDown::TopDown(Entity *entity) : Behavior(entity){
 	
 }
 
