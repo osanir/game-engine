@@ -50,6 +50,7 @@ public:
 	MyGame(){
 		this->player = new Player("player.png");
 		this->wall = new Wall("wall.png");
+		this->wall->isSolid = true;
 		this->wall->setPosition({300,300});
 		this->addEntity(player);
 		this->addEntity(wall);

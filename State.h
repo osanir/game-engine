@@ -7,6 +7,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Entity.h"
+#include "Map.h"
 
 class State : public sf::Drawable{
 public:
@@ -26,6 +27,7 @@ protected:
 	virtual void drawEntities(sf::RenderTarget& target, sf::RenderStates states) const = 0;
 	virtual void updateEntities(const float& dt) const = 0;
 	std::vector<Entity*> entities;
+	Map map;
 
 private:
 	std::vector<sf::Texture> textures;

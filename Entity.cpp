@@ -77,7 +77,7 @@ std::vector<Entity*>* Entity::getCollisions(){
 // Setters
 void Entity::setMovement(sf::Vector2f movement){
 	this->movement = movement;
-}
+}	
 
 void Entity::setMovementSpeed(float movementSpeed){
 	this->movementSpeed = movementSpeed;

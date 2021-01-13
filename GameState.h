@@ -14,5 +14,6 @@ public:
 	void drawEntities(sf::RenderTarget& target, sf::RenderStates states) const;
 	void updateEntities(const float&dt) const ;
 private:
+
 };
 
