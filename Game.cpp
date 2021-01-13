@@ -66,6 +66,10 @@ void Game::run(){
 	}
 }
 
+sf::RenderWindow* Game::getWindow(){
+	return &this->window;
+}
+
 void Game::processEvents(){
 	sf::Event event;
 	while(window.pollEvent(event)){
@@ -101,7 +105,6 @@ void Game::update(){
 
 void Game::render(){
 	this->window.clear(sf::Color::White);
-
 	if(!this->states.empty()){
 		this->window.draw(*this->states.top());
 	}

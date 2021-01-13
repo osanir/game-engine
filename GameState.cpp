@@ -22,6 +22,7 @@ void GameState::update(const float& dt){
 	this->updateKeybinds(dt);
 	//this->checkEntityCollisions();
 	this->updateEntities(dt);
+	
 }
 
 void GameState::draw(sf::RenderTarget& target, sf::RenderStates states) const{

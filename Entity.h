@@ -39,5 +39,7 @@ private:
 	sf::RectangleShape collisionShape;
 
 	std::vector<Entity*> collisions;
+
 	friend class TopDown;
+	friend class ScrollTo;
 };

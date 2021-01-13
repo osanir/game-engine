@@ -19,14 +19,18 @@ public:
 	Player(std::string fileName)
 		:Entity(fileName)
 		,topDown(this)
+		,scrollTo(this)
 	{
 
 	}
 
 	void update(float dt){
 		topDown.update(dt);
+		scrollTo.update(dt);
 	}
 	TopDown topDown;
+	ScrollTo scrollTo;
+
 };
 
 class Wall : public Entity{
@@ -51,6 +55,8 @@ public:
 	MyGame(){
 		this->player = new Player("player.png");
 		this->wall = new Wall("wall.png");
+		this->player->scrollTo.setWindow(this->getWindow());
+
 		this->state = new GameState("Map2.config");
 		this->wall->isSolid = true;
 		this->wall->setPosition({300,300});

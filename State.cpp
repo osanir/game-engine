@@ -21,6 +21,10 @@ void State::addEntity(Entity* entity){
 	this->entities.push_back(entity);
 }
 
+sf::View State::getView(){
+	return this->camera.getView();
+}
+
 //bool checkCollision(Entity& e1, Entity& e2){
 //	if(e1.getShape().getGlobalBounds().intersects(e2.getShape().getGlobalBounds())){
 //		return true;

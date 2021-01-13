@@ -4,9 +4,15 @@
 #include <SFML/System.hpp>
 
 #include <iostream>
+
+// Behaviors
 #include "TopDown.h"
+#include "ScrollTo.h"
+
 #include "Entity.h"
 #include "GameState.h"
+#include "Camera.h"
+
 using namespace std;
 
 class Game{
@@ -18,6 +24,9 @@ public:
 	void addState(State* state);
 	void addEntity(Entity* entity);
 	void run();
+
+	// Getters
+	sf::RenderWindow* getWindow();
 
 	virtual void OnStart() = 0;
 	virtual void OnUpdate() = 0;
