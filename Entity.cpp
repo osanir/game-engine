@@ -27,6 +27,7 @@ Entity::Entity(std::string fileName, float speed, sf::Vector2f position, sf::Vec
 	this->movement = movement;
 	this->movementSpeed = speed;
 	this->shape.setScale(scale);
+	this->shape.setOrigin(sf::Vector2f(this->texture->getSize().x / 2, this->texture->getSize().y / 2));
 }
 
 /*
@@ -41,8 +42,55 @@ void Entity::render(sf::RenderTarget &target){
 //
 //}
 
+// Collision
+bool Entity::onCollision(Entity& entity){
+	if(this->shape.getGlobalBounds().intersects(entity.shape.getGlobalBounds())){
+		return true;
+	}
+	return false;
+}
+
 
 
 void Entity::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(this->shape, states);
+}
+
+
+// Getters
+sf::Sprite Entity::getShape(){
+	return this->shape;
+}
+
+sf::Vector2f Entity::getPosition(){
+	return this->shape.getPosition();
+}
+
+sf::Vector2u Entity::getSize(){
+	return this->texture->getSize();
+}
+
+std::vector<Entity*>* Entity::getCollisions(){
+	return &(this->collisions);
+}
+
+// Setters
+void Entity::setMovement(sf::Vector2f movement){
+	this->movement = movement;
+}
+
+void Entity::setMovementSpeed(float movementSpeed){
+	this->movementSpeed = movementSpeed;
+}
+
+void Entity::setPosition(sf::Vector2f newPosition){
+	this->shape.setPosition(newPosition);
+}
+
+void Entity::clearCollisions(){
+	this->collisions.clear();
+;}
+
+void Entity::move(sf::Vector2f move){
+	this->shape.move(move);
 }

@@ -21,6 +21,7 @@ public:
 	virtual void update(const float& dt) = 0;
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const = 0;
 	void addEntity(Entity* entity);
+	//void checkEntityCollisions();
 protected:
 	virtual void drawEntities(sf::RenderTarget& target, sf::RenderStates states) const = 0;
 	virtual void updateEntities(const float& dt) const = 0;

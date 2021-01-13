@@ -19,7 +19,7 @@ public:
 	void addEntity(Entity* entity);
 	void run();
 
-
+	virtual void OnUpdate() = 0;
 private:
 	void start();
 	void processEvents();

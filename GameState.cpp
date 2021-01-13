@@ -16,6 +16,7 @@ void GameState::updateKeybinds(const float& dt){
 
 void GameState::update(const float& dt){
 	this->updateKeybinds(dt);
+	//this->checkEntityCollisions();
 	this->updateEntities(dt);
 }
 

@@ -12,8 +12,19 @@ TopDown::TopDown(Entity *entity) : Behavior(entity){
 	
 }
 
+bool checkCollision(Entity& e1, Entity& e2){
+	if(e1.getShape().getGlobalBounds().intersects(e2.getShape().getGlobalBounds())){
+		return true;
+	}
+	return false;
+}
+
 void TopDown::update(float dt){
 	handlePlayerInput();
+	/*entity->collisionShape.setSize(sf::Vector2f(entity->texture->getSize().x, entity->texture->getSize().y));
+	entity->collisionShape.setPosition(entity->shape.getPosition());
+	entity->collisionShape.move(entity->movement * dt * entity->movementSpeed);
+	if( entity.ge)*/
 	entity->shape.move(entity->movement * dt * entity->movementSpeed);
 }
 

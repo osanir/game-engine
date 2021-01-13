@@ -29,10 +29,42 @@ public:
 	TopDown topDown;
 };
 
+class Wall : public Entity{
+public:
+	Wall(std::string fileName)
+		:Entity(fileName)
+	{
+	}
+	void update(float dt){
+		
+	}
+
+	
+};
+
+class MyGame : public Game{
+public:
+	Player* player;
+	Wall* wall;
+
+	MyGame(){
+		this->player = new Player("player.png");
+		this->wall = new Wall("wall.png");
+		this->wall->setPosition({300,300});
+		this->addEntity(player);
+		this->addEntity(wall);
+	}
+
+	void OnUpdate(){
+		if(player->onCollision(*wall)){
+			std::cout << "Çarpýþtý" << std::endl;
+		}
+	}
+};
+
 int main(){
-	Game game;
-	Entity* entity = new Player("player.png");
-	game.addEntity(entity);
+	MyGame game;
+
 	game.run();
 	return 0;
 }

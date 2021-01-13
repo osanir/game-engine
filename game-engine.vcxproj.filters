@@ -59,5 +59,8 @@
     <ClInclude Include="Behavior.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Collision.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

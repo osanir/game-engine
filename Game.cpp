@@ -59,6 +59,7 @@ void Game::run(){
 	while(window.isOpen()){
 		this->updateDt();
 		this->processEvents();
+		this->OnUpdate();
 		this->update();
 		this->render();
 	}
@@ -102,7 +103,7 @@ void Game::update(){
 }
 
 void Game::render(){
-	this->window.clear();
+	this->window.clear(sf::Color::White);
 
 	if(!this->states.empty()){
 		this->window.draw(*this->states.top());
