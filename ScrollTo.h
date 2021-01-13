@@ -4,7 +4,7 @@
 class ScrollTo : public Behavior{
 public:
 	ScrollTo(Entity* entity);
-
+	// TODO: Karakter ekranýn sað tarafýna hareket ettiðinde beyaz alanlar görünüyor. Fix
 	void update(float dt);
 	void setWindow(sf::RenderWindow* window);
 private:

@@ -28,6 +28,10 @@ public:
     void readMap();
     //void drawTile(sf::RenderWindow& window);
     void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+
+    // Getters
+    sf::Vector2f getLayoutSize();
+
 private:
     
     /* void createRandomObjects(); */

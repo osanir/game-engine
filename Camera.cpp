@@ -19,7 +19,7 @@ void Camera::update(sf::Vector2f pos){
     else
         position.y = 480 / 2;
 
-    std::cout << position.x << "  " << position.y << std::endl;
+    //std::cout << position.x << "  " << position.y << std::endl;
     view.setCenter(position);
 }
 

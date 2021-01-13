@@ -27,6 +27,7 @@ public:
 
 	// Getters
 	sf::RenderWindow* getWindow();
+	sf::Vector2i getMousePosition();
 
 	virtual void OnStart() = 0;
 	virtual void OnUpdate() = 0;

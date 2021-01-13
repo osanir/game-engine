@@ -9,7 +9,6 @@ public:
 	Entity(sf::Vector2f position, sf::Vector2f size, sf::Color color, float speed);
 	Entity(std::string fileName, float speed = 200, sf::Vector2f position = {0,0}, sf::Vector2f scale = {1,1});
 	virtual void update(float dt) = 0;
-	//void render(sf::RenderTarget &target);
 	bool isSolid;
 
 	// Collision
@@ -26,6 +25,8 @@ public:
 	void setMovement(sf::Vector2f movement);
 	void setMovementSpeed(float movementSpeed);
 	void setPosition(sf::Vector2f newPosition);
+	void setRotationTowardPosition(sf::Vector2i towardPosition);
+
 	void clearCollisions();
 	void move(sf::Vector2f move);
 private:
@@ -33,10 +34,8 @@ private:
 	float movementSpeed;
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-	//sf::RectangleShape shape;
 	sf::Texture* texture;
 	sf::Sprite shape;
-	sf::RectangleShape collisionShape;
 
 	std::vector<Entity*> collisions;
 

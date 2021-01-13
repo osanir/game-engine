@@ -91,6 +91,10 @@ void Map::draw(sf::RenderTarget& target, sf::RenderStates states) const{
     }
 }
 
+sf::Vector2f Map::getLayoutSize(){
+    return sf::Vector2f(map_tiles.size() * tilemapData.gridWidth, map_tiles[0].size() * tilemapData.gridHeight);
+}
+
 void Map::initMap(){
 
     for(int y = 0; y < map_tiles.size(); y++){

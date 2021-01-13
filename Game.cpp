@@ -70,6 +70,10 @@ sf::RenderWindow* Game::getWindow(){
 	return &this->window;
 }
 
+sf::Vector2i Game::getMousePosition(){
+	return sf::Mouse::getPosition(this->window);
+}
+
 void Game::processEvents(){
 	sf::Event event;
 	while(window.pollEvent(event)){

@@ -22,7 +22,7 @@ void GameState::update(const float& dt){
 	this->updateKeybinds(dt);
 	//this->checkEntityCollisions();
 	this->updateEntities(dt);
-	
+	//std::cout << this->map->getLayoutSize().x << "  " << this->map->getLayoutSize().y << std::endl;
 }
 
 void GameState::draw(sf::RenderTarget& target, sf::RenderStates states) const{

@@ -54,6 +54,7 @@ public:
 
 	MyGame(){
 		this->player = new Player("player.png");
+		this->player->setMovementSpeed(500);
 		this->wall = new Wall("wall.png");
 		this->player->scrollTo.setWindow(this->getWindow());
 
@@ -73,6 +74,8 @@ public:
 		if(player->onCollision(*wall)){
 			std::cout << "Çarpýþtý" << std::endl;
 		}
+
+		player->setRotationTowardPosition(this->getMousePosition());
 	}
 };
 

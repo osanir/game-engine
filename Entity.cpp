@@ -87,6 +87,34 @@ void Entity::setPosition(sf::Vector2f newPosition){
 	this->shape.setPosition(newPosition);
 }
 
+void Entity::setRotationTowardPosition(sf::Vector2i towardPosition){
+	float y, y1;
+	float x, x1;
+	float m;
+
+	x = this->shape.getPosition().x;
+	y = this->shape.getPosition().y;
+
+	// TODO: Window boyutunu ortak bir yerden al
+	if( x > 427)
+		x1 = x + towardPosition.x - 427; // 854 / 2 = 427 
+	else
+		x1 = towardPosition.x; // 854 / 2 = 427 
+
+	if( y> 240)
+		y1 = y + towardPosition.y - 240; // 480 / 2 = 240
+	else
+		y1 = towardPosition.y ; // 480 / 2 = 240
+
+
+	m = (y - y1) / (x - x1);
+	m = atan(m);
+	m = m * 180 / 3.14159265;
+	if(x > x1) m += 180;
+
+	this->shape.setRotation(m);
+}
+
 void Entity::clearCollisions(){
 	this->collisions.clear();
 ;}
