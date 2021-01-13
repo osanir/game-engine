@@ -18,7 +18,7 @@ struct TilemapData{
     int spaceX;
     int spaceY;
 };
-
+// TODO: fix aþaðý 1'den fazla numaralý tile'lar'a eriþemiyor.
 class Map : public sf::Drawable{
 public:
     Map();
