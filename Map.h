@@ -8,6 +8,7 @@
 
 struct TilemapData{
     std::string fileName;
+    std::string mapName;
     int imageWidth;
     int imageHeight;
     int gridWidth;
@@ -34,5 +35,7 @@ private:
     sf::Sprite* tileset_spr;
     std::vector <std::vector<int> > map_tiles;
     std::list<sf::RectangleShape*> solidObjects;
+
+    TilemapData tilemapData;
 
 };

@@ -19,6 +19,7 @@ public:
 	void addEntity(Entity* entity);
 	void run();
 
+	virtual void OnStart() = 0;
 	virtual void OnUpdate() = 0;
 private:
 	void start();
@@ -29,6 +30,7 @@ private:
 	float dt;
 	// Initialization
 	void initStates();
+	void initEntities();
 
 	sf::Clock dtClock;
 

@@ -56,6 +56,7 @@ void Game::updateDt(){
 
 void Game::run(){
 	this->start();
+	this->OnStart();
 	while(window.isOpen()){
 		this->updateDt();
 		this->processEvents();
@@ -81,11 +82,7 @@ void Game::processEvents(){
 void Game::start(){
 	// Init something
 	this->initStates();
-	if(!this->states.empty()){
-		for(auto* newEntity : this->newEntities){
-			this->states.top()->addEntity(newEntity);
-		}
-	}
+	this->initEntities();
 
 }
 
@@ -115,6 +112,14 @@ void Game::render(){
 void Game::initStates(){
 	if(this->states.empty()){
 		this->states.push(new GameState());
+	}
+}
+
+void Game::initEntities(){
+	if(!this->states.empty()){
+		for(auto* newEntity : this->newEntities){
+			this->states.top()->addEntity(newEntity);
+		}
 	}
 }
 

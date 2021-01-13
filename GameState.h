@@ -4,6 +4,7 @@
 class GameState : public State{
 public:
 	GameState();
+	GameState(std::string configFileName);
 	virtual ~GameState();
 
 	// Functions

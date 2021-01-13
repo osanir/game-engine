@@ -27,7 +27,7 @@ protected:
 	virtual void drawEntities(sf::RenderTarget& target, sf::RenderStates states) const = 0;
 	virtual void updateEntities(const float& dt) const = 0;
 	std::vector<Entity*> entities;
-	Map map;
+	Map *map;
 
 private:
 	std::vector<sf::Texture> textures;

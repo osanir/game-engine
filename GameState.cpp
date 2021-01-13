@@ -1,6 +1,10 @@
 #include "GameState.h"
 
 GameState::GameState(){
+	map = new Map("Map.config");
+}
+GameState::GameState(std::string configFileName){
+	map = new Map(configFileName);
 }
 
 GameState::~GameState(){
@@ -26,7 +30,7 @@ void GameState::draw(sf::RenderTarget& target, sf::RenderStates states) const{
 
 void GameState::drawEntities(sf::RenderTarget& target, sf::RenderStates states) const{
 	//target.draw(map);
-	target.draw(map);
+	target.draw(*map);
 	for(auto *entity : this->entities){
 		target.draw(*entity);
 	}

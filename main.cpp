@@ -46,14 +46,21 @@ class MyGame : public Game{
 public:
 	Player* player;
 	Wall* wall;
+	State* state;
 
 	MyGame(){
 		this->player = new Player("player.png");
 		this->wall = new Wall("wall.png");
+		this->state = new GameState("Map2.config");
 		this->wall->isSolid = true;
 		this->wall->setPosition({300,300});
+		this->addState(state);
 		this->addEntity(player);
 		this->addEntity(wall);
+	}
+	
+	void OnStart(){
+
 	}
 
 	void OnUpdate(){
