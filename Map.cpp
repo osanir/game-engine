@@ -64,6 +64,8 @@ void Map::readMap(){
         }
     }
 
+
+    globals.setLayoutSize(this->getLayoutSize());
 }
 
 //void Map::drawTile(sf::RenderWindow& window){
@@ -92,7 +94,7 @@ void Map::draw(sf::RenderTarget& target, sf::RenderStates states) const{
 }
 
 sf::Vector2f Map::getLayoutSize(){
-    return sf::Vector2f(map_tiles.size() * tilemapData.gridWidth, map_tiles[0].size() * tilemapData.gridHeight);
+    return sf::Vector2f(map_tiles[0].size() * tilemapData.gridWidth, map_tiles.size() * tilemapData.gridHeight);
 }
 
 void Map::initMap(){

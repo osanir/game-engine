@@ -9,6 +9,8 @@
 #include "TopDown.h"
 #include "ScrollTo.h"
 
+#include "Globals.h"
+
 #include "Entity.h"
 #include "GameState.h"
 #include "Camera.h"

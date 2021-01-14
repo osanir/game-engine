@@ -52,7 +52,8 @@ public:
 	Wall* wall;
 	State* state;
 
-	MyGame(){
+	MyGame(): Game()
+	{
 		this->player = new Player("player.png");
 		this->player->setMovementSpeed(500);
 		this->wall = new Wall("wall.png");

@@ -70,10 +70,6 @@ sf::Vector2u Entity::getSize(){
 	return this->texture->getSize();
 }
 
-std::vector<Entity*>* Entity::getCollisions(){
-	return &(this->collisions);
-}
-
 // Setters
 void Entity::setMovement(sf::Vector2f movement){
 	this->movement = movement;
@@ -88,6 +84,8 @@ void Entity::setPosition(sf::Vector2f newPosition){
 }
 
 void Entity::setRotationTowardPosition(sf::Vector2i towardPosition){
+	sf::VideoMode windowBounds(globals.getWindowBounds());
+	sf::Vector2f layoutSize(globals.getLayoutSize());
 	float y, y1;
 	float x, x1;
 	float m;
@@ -95,18 +93,25 @@ void Entity::setRotationTowardPosition(sf::Vector2i towardPosition){
 	x = this->shape.getPosition().x;
 	y = this->shape.getPosition().y;
 
-	// TODO: Window boyutunu ortak bir yerden al
-	if( x > 427)
-		x1 = x + towardPosition.x - 427; // 854 / 2 = 427 
+	// TODO:: fix son else durumundayken karakter ekranýn en sað ve en alt 
+	// kýsýmlarýndayken imleç pencernein altýna veya saðýna götürülürse 
+	// karakter ters yöne bakýyor. Tam ekranda problem deðil ancak pencereli 
+	// modda rahatsýz edici.
+	if(x > windowBounds.width / 2.f && x < layoutSize.x - windowBounds.width / 2.f)
+		x1 = x + (towardPosition.x - windowBounds.width / 2.f); 
+	else if(x < windowBounds.width / 2.f)
+		x1 = towardPosition.x;
 	else
-		x1 = towardPosition.x; // 854 / 2 = 427 
+		x1 = layoutSize.x - (windowBounds.width - towardPosition.x); // 854 / 2 = 427 
 
-	if( y> 240)
-		y1 = y + towardPosition.y - 240; // 480 / 2 = 240
+	if(y > windowBounds.height / 2.f && y < layoutSize.y - windowBounds.height / 2.f)
+		y1 = y + towardPosition.y - windowBounds.height / 2.f;
+	else if(y < windowBounds.height / 2.f)
+		y1 = towardPosition.y;
 	else
-		y1 = towardPosition.y ; // 480 / 2 = 240
+		y1 = layoutSize.y - (windowBounds.height - towardPosition.y);
 
-
+	//std::cout << "x: " << x << "\t y:" << y << "\t x1:" << x1 << "\t y1: " << y1 << "\t tpx:" << towardPosition.x << " \t tpy:" << towardPosition.y << std::endl;
 	m = (y - y1) / (x - x1);
 	m = atan(m);
 	m = m * 180 / 3.14159265;
@@ -114,10 +119,6 @@ void Entity::setRotationTowardPosition(sf::Vector2i towardPosition){
 
 	this->shape.setRotation(m);
 }
-
-void Entity::clearCollisions(){
-	this->collisions.clear();
-;}
 
 void Entity::move(sf::Vector2f move){
 	this->shape.move(move);

@@ -2,6 +2,7 @@
 
 GameState::GameState(){
 	map = new Map("Map.config");
+	globals.setLayoutSize(this->map->getLayoutSize());
 }
 GameState::GameState(std::string configFileName){
 	map = new Map(configFileName);

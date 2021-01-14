@@ -5,6 +5,7 @@
 #include <list>
 #include <fstream>
 #include <vector>
+#include "Globals.h"
 
 struct TilemapData{
     std::string fileName;

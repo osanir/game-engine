@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <iostream>
+#include "Globals.h"
 
 class Entity : public sf::Drawable{
 public:
@@ -13,13 +14,10 @@ public:
 
 	// Collision
 	bool onCollision(Entity& entity);
-	bool hasCollision();
 	// Getters
 	sf::Sprite getShape();
 	sf::Vector2f getPosition();
 	sf::Vector2u getSize();
-	std::vector<Entity*> *getCollisions();
-
 
 	// Setters
 	void setMovement(sf::Vector2f movement);
@@ -27,7 +25,6 @@ public:
 	void setPosition(sf::Vector2f newPosition);
 	void setRotationTowardPosition(sf::Vector2i towardPosition);
 
-	void clearCollisions();
 	void move(sf::Vector2f move);
 private:
 	sf::Vector2f movement;
@@ -37,8 +34,7 @@ private:
 	sf::Texture* texture;
 	sf::Sprite shape;
 
-	std::vector<Entity*> collisions;
-
+	// Friends
 	friend class TopDown;
 	friend class ScrollTo;
 };

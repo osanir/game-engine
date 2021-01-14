@@ -4,27 +4,30 @@
 #include <sstream>
 #include <iostream>
 
-Game::Game() : window(sf::VideoMode(854, 480), "Engine"){
+Game::Game() :
+window(sf::VideoMode(400,300), "SFML Game Engin"){
 	this->dt = this->dtClock.restart().asSeconds();
 	std::ifstream ifs("Config/Window.config");
 
 	std::string title = "None";
-	sf::VideoMode window_bounds(854, 480);
+	sf::VideoMode windowBounds(854, 480);
 	unsigned frame_limit = 120;
 	bool vertical_sync_enabled = false;
 
 	if( ifs.is_open() ){
 		std::getline(ifs, title);
-		ifs >> window_bounds.width >> window_bounds.height;
+		ifs >> windowBounds.width >> windowBounds.height;
 		ifs >> frame_limit;
 		ifs >> vertical_sync_enabled;
-
-		this->window.setTitle(title);
-		this->window.setFramerateLimit(frame_limit);
-		this->window.setVerticalSyncEnabled(vertical_sync_enabled);
 	} else{
 		// std::cout << "File Error: Could not open file" << std::endl;
 	}
+
+	globals.setWindowBounds(windowBounds);
+	this->window.setSize(sf::Vector2u(windowBounds.width, windowBounds.height));
+	this->window.setTitle(title);
+	this->window.setFramerateLimit(frame_limit);
+	this->window.setVerticalSyncEnabled(vertical_sync_enabled);
 
 	ifs.close();
 }
@@ -80,6 +83,10 @@ void Game::processEvents(){
 		// Window close
 		if(event.type == sf::Event::Closed){
 			window.close();
+		}
+		if(event.type == sf::Event::Resized){
+			globals.setWindowBounds(sf::VideoMode(this->window.getSize().x, this->window.getSize().y));
+			//std::cout << this->window.getSize().x << " : " << this->window.getSize().y << std::endl;
 		}
 		if(this->states.empty()){
 			window.close();
