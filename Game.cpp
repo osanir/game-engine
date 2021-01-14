@@ -4,11 +4,11 @@
 #include <sstream>
 #include <iostream>
 
-Game::Game() :
-window(sf::VideoMode(400,300), "SFML Game Engin"){
+Game::Game() : window(sf::VideoMode(360, 240), "SFML Game Engin"){
 	this->dt = this->dtClock.restart().asSeconds();
-	std::ifstream ifs("Config/Window.config");
 
+	/* Pencere ile ilgili konfigürasyonlar dosyadan okunur. */
+	std::ifstream ifs("Config/Window.config");
 	std::string title = "None";
 	sf::VideoMode windowBounds(854, 480);
 	unsigned frame_limit = 120;
@@ -23,7 +23,10 @@ window(sf::VideoMode(400,300), "SFML Game Engin"){
 		// std::cout << "File Error: Could not open file" << std::endl;
 	}
 
+	/* Konfigürasyon dosyasýndan okunan veriler global olarak tutulur. */
 	globals.setWindowBounds(windowBounds);
+	
+	/* Pencere iþlemleri gerçekleþtirilir. */
 	this->window.setSize(sf::Vector2u(windowBounds.width, windowBounds.height));
 	this->window.setTitle(title);
 	this->window.setFramerateLimit(frame_limit);
@@ -33,6 +36,8 @@ window(sf::VideoMode(400,300), "SFML Game Engin"){
 }
 
 Game::~Game(){
+	/* Herhangi bir state kalmayana kadar stack'i 
+	   boþaltýr ve oyunu bitirir. */
 	while(!this->states.empty()){
 		delete this->states.top();
 		this->states.pop();
@@ -51,14 +56,18 @@ void Game::updateDt(){
 	/* Calculates the elapsed time between two sequential frames. */
 
 	this->dt = this->dtClock.restart().asSeconds();
-	// This shows elapsed time between two frames
+	
+	/* Ýki kare arasýnda geçen zaman
+	   This shows elapsed time between two frames */
 	//std::cout << this->dt << std::endl;
-	// This shows the count of frames per second
+	
+	/* FPS Sayacý
+	   This shows the count of frames per second */
 	//std::cout << "FPS: " << 1.f / this->dt << std::endl;
 }
 
 void Game::run(){
-	this->start();
+	this->init();
 	this->OnStart();
 	while(window.isOpen()){
 		this->updateDt();
@@ -78,9 +87,9 @@ sf::Vector2i Game::getMousePosition(){
 }
 
 void Game::processEvents(){
+	/* Pencere ile ilgili olaylar burada tanýmlanýr. */
 	sf::Event event;
 	while(window.pollEvent(event)){
-		// Window close
 		if(event.type == sf::Event::Closed){
 			window.close();
 		}
@@ -94,14 +103,16 @@ void Game::processEvents(){
 	}
 }
 
-void Game::start(){
-	// Init something
+void Game::init(){
+	/* Init something
+	   Stateler ve eklenecek varlýklar burada setleniyor. */
 	this->initStates();
 	this->initEntities();
 
 }
 
 void Game::update(){
+	/* Stack'te tutulan statelerin en üstteki update ediliyor. */
 	if(!this->states.empty()){
 		this->states.top()->update(dt);
 
@@ -116,7 +127,10 @@ void Game::update(){
 
 void Game::render(){
 	this->window.clear(sf::Color::White);
+	/* Ekrana çizdirme olaylarý burada gerçekleþiyor. */
 	if(!this->states.empty()){
+		/* State sýnýflarý da sf::Drawable sýnýfýndan 
+		   türetildiði için bu þekilde bir kullaným yapabiliyoruz. */
 		this->window.draw(*this->states.top());
 	}
 	
@@ -124,12 +138,16 @@ void Game::render(){
 }
 
 void Game::initStates(){
+	/* Oyun baþlatýldýðýnda herhangi bir state belirtilmemiþse
+	   GameState türünde bir state ile oyun baþlatýlýyor. */
 	if(this->states.empty()){
 		this->states.push(new GameState());
 	}
 }
 
 void Game::initEntities(){
+	/* Kullanýcý tarafýndan eklenecek entityler, 
+	   state listesinin en üstüne ekleniyor. */
 	if(!this->states.empty()){
 		for(auto* newEntity : this->newEntities){
 			this->states.top()->addEntity(newEntity);

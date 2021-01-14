@@ -7,6 +7,17 @@
 #include <vector>
 #include "Globals.h"
 
+// TODO: Ýçe aktarmada bazý sorunlar var yeniden yazýlmasý gerekebilir.
+// TODO: Konfigürasyon dosyasýndaki offset ve spacing 
+// deðerlerine göre içe aktarým yapýlmalý.
+
+/*
+*       Map objesi yüklenecek harita ile ilgili 
+*   iþlemleri yapmakla yükümlüdür.
+*       ...
+*/
+
+/* Okunacak olan tilemap dosyasýnýn özellikleri tutulur. */
 struct TilemapData{
     std::string fileName;
     std::string mapName;

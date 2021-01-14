@@ -1,17 +1,20 @@
 #include "GameState.h"
 
-GameState::GameState(){
-	map = new Map("Map.config");
-	globals.setLayoutSize(this->map->getLayoutSize());
+GameState::GameState()
+	: GameState("Map.config"){
+
 }
 GameState::GameState(std::string configFileName){
 	map = new Map(configFileName);
+	globals.setLayoutSize(this->map->getLayoutSize());
 }
 
 GameState::~GameState(){
 }
 
 void GameState::endState(){
+	// TODO: endState fonksiyonunu destructor içine ekleyebiliriz.
+	// Kullandýðý bütün kaynaklarý serbest býrakmalýdýr.
 	std::cout << "Ending States" << std::endl;
 }
 
@@ -20,6 +23,8 @@ void GameState::updateKeybinds(const float& dt){
 }
 
 void GameState::update(const float& dt){
+	/* State'i sonlandýrmak için escape tuþuna 
+	   basýlýp basýlmadýðýný kontrol eder. */
 	this->updateKeybinds(dt);
 	//this->checkEntityCollisions();
 	this->updateEntities(dt);

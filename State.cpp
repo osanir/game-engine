@@ -12,6 +12,7 @@ const bool& State::getQuit() const{
 }
 
 void State::checkForQuit(){
+	/* Escape tuşuna basıldığı zaman mevcut state sonlanır. */
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
 		this->quit = true;
 	}

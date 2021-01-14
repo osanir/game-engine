@@ -1,7 +1,7 @@
 #include "Entity.h"
 
 Entity::Entity(){
-	this->shape.setPosition(sf::Vector2f(100, 100));
+	this->shape.setPosition(sf::Vector2f(0, 0));
 	//this->shape.setSize(sf::Vector2f(50, 50));
 	//this->shape.setFillColor(sf::Color::Red);
 
@@ -18,15 +18,29 @@ Entity::Entity(sf::Vector2f position, sf::Vector2f size, sf::Color color, float 
 }
 
 Entity::Entity(std::string fileName, float speed, sf::Vector2f position, sf::Vector2f scale){
+	// TOOD: Ayný texture'ý kullanacak objeler için tekrar texture import etmeye gerek yok.
+	// Program baþlatýldýðýnda dosyadaki bütün görseller texture olarak içe aktarýlmalý ve 
+	// ilgili texture'larýn hangi dosyadan okunduðuna dair dosya adlarý map'li bir þekilde
+	// tutulmalý. Bu sayede ayný kaplamaya sahip bütün entityler ayný bellek alanýný kullanabilir.
+
+	/* Parametre olarak gelen dosya ismi içe aktarýlýr. */
 	sf::Texture tex;
 	if(!tex.loadFromFile("Resources/Textures/" + fileName)){
 		std::cout << fileName + " could not load from file. " << std::endl;
 	}
 	texture = new sf::Texture(tex);
+	/* Sprite'ýn kaplamasý içe aktarýlan bu texture ile güncellenir. */
 	this->shape.setTexture(*this->texture);
+	/* Parametre olarak gelen deðiþkenler atanýr. Eðer deðerler 
+	   gelmemiþ ise varsayýlan deðerleri ile atama gerçekleþtirilir. 
+	   Bunu incelemek için Constructor'ýn prototipi incelenmelidir. */
 	this->movement = movement;
 	this->movementSpeed = speed;
 	this->shape.setScale(scale);
+
+	/* Varlýðýn origini varsayýlan olarak sol üst köþedir. 
+	   (0, 0) noktasýnýn, varlýðýn merkezi olmasýný istediðimiz için
+	   kaplama boyutlarýnýn yarýsý olacak þekilde güncelliyoruz. */
 	this->shape.setOrigin(sf::Vector2f(this->texture->getSize().x / 2, this->texture->getSize().y / 2));
 }
 
@@ -44,6 +58,8 @@ void Entity::render(sf::RenderTarget &target){
 
 // Collision
 bool Entity::onCollision(Entity& entity){
+	/* Ýlgili þeklin kenarlarý ile parametre olarak gelen þeklin kenarlarý
+	   arasýnda bir kesiþim var mý testi yapýlýr. */
 	if(this->shape.getGlobalBounds().intersects(entity.shape.getGlobalBounds())){
 		return true;
 	}
