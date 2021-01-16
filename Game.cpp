@@ -109,6 +109,7 @@ void Game::init(){
 	this->initStates();
 	this->initEntities();
 
+	globals.setCurrentEntities(this->states.top()->getEntities());
 }
 
 void Game::update(){
@@ -120,6 +121,7 @@ void Game::update(){
 			this->states.top()->endState();
 			delete this->states.top();
 			this->states.pop();
+			globals.setCurrentEntities(this->states.top()->getEntities());
 		}
 
 	} 

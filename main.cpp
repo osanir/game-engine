@@ -72,9 +72,9 @@ public:
 	}
 
 	void OnUpdate(){
-		if(player->onCollision(*wall)){
+		/*if(player->onCollision(*wall)){
 			std::cout << "Çarpýþtý" << std::endl;
-		}
+		}*/
 
 		player->setRotationTowardPosition(this->getMousePosition());
 	}

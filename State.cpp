@@ -22,8 +22,12 @@ void State::addEntity(Entity* entity){
 	this->entities.push_back(entity);
 }
 
+std::vector<Entity*> State::getEntities(){
+	return this->entities;
+}
+
 //bool checkCollision(Entity& e1, Entity& e2){
-//	if(e1.getShape().getGlobalBounds().intersects(e2.getShape().getGlobalBounds())){
+//	if(e1.getSprite().getGlobalBounds().intersects(e2.getSprite().getGlobalBounds())){
 //		return true;
 //	}
 //	return false;

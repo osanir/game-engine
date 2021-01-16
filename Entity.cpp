@@ -1,4 +1,5 @@
 #include "Entity.h"
+#include "Globals.h"
 
 Entity::Entity(){
 	this->shape.setPosition(sf::Vector2f(0, 0));
@@ -74,7 +75,7 @@ void Entity::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
 
 // Getters
-sf::Sprite Entity::getShape(){
+sf::Sprite Entity::getSprite(){
 	return this->shape;
 }
 

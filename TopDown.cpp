@@ -1,4 +1,5 @@
 #include "TopDown.h"
+#include "Globals.h"
 
 // TODO: normalize gibi fonksiyonlarý utilites gibi ortak bir 
 // sýnýf altýnda toplamak gerekiyor. Globals sýnýfý gibi 
@@ -19,10 +20,11 @@ TopDown::TopDown(Entity *entity) : Behavior(entity){
 
 // TODO: feature TopDown davranýþýna sahip varlýk katý objelerin içinden geçmemeli.
 bool checkCollision(Entity& e1, Entity& e2){
-	if(e1.getShape().getGlobalBounds().intersects(e2.getShape().getGlobalBounds())){
-		return true;
-	}
-	return false;
+	return e1.getSprite().getGlobalBounds().intersects(e2.getSprite().getGlobalBounds());
+}
+bool checkCollision(sf::Sprite e1, sf::Sprite e2){
+	std::cout << "t1x: " << e1.getPosition().x << "\t e1y: " << e1.getPosition().y << "\t e2x: " << e2.getPosition().x << "\t e2y: " << e2.getPosition().y << std::endl;
+	return e1.getGlobalBounds().intersects(e2.getGlobalBounds());
 }
 
 void TopDown::update(float dt){
@@ -31,6 +33,22 @@ void TopDown::update(float dt){
 	entity->collisionShape.setPosition(entity->shape.getPosition());
 	entity->collisionShape.move(entity->movement * dt * entity->movementSpeed);
 	if( entity.ge)*/
+	std::vector<Entity*> currentEntities = globals.getCurrentEntities();
+	int size = currentEntities.size();
+	for(int i = 0; i < size; i++){
+		if( currentEntities[i]->isSolid && checkCollision(currentEntities[i]->getSprite(), this->getNextFrameSprite(dt)) ){
+			std::cout << "Alo" << std::endl;
+
+			sf::Vector2f s1 = currentEntities[i]->getSprite().getPosition();
+			sf::Vector2f s2 = this->getNextFrameSprite(dt).getPosition();
+
+			if(abs(s1.x - s2.x) > abs(s1.y - s2.y)){
+				this->entity->movement.x = 0;
+			} else{
+				this->entity->movement.y = 0;
+			}
+		}
+	}
 	entity->shape.move(entity->movement * dt * entity->movementSpeed);
 }
 
@@ -52,4 +70,13 @@ void TopDown::handlePlayerInput(){
 	}
 
 	entity->movement = normalize(entity->movement);
+}
+
+sf::Sprite TopDown::getNextFrameSprite(float dt){
+	sf::Sprite nextSprite(this->entity->getSprite());
+	sf::Vector2f nextPos(this->entity->getPosition());
+	nextPos.x += this->entity->movement.x * dt * this->entity->movementSpeed;
+	nextPos.y += this->entity->movement.y * dt * this->entity->movementSpeed;
+	nextSprite.setPosition(nextPos);
+	return nextSprite;
 }

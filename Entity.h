@@ -2,7 +2,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <iostream>
-#include "Globals.h"
 
 /*
 *		Oyunda ekrana çizdirilen bürün varlýklar bu 
@@ -39,7 +38,7 @@ public:
 	
 	// Getters
 	/* Varlýðýn sprite'ýný döndürür.*/
-	sf::Sprite getShape();
+	sf::Sprite getSprite();
 	/* Varlýðýn pozisyonunu döndürür. */
 	sf::Vector2f getPosition();
 	/* Varlýðýn boyutunu döndürür. */

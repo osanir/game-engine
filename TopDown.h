@@ -33,5 +33,8 @@ private:
 	/* W,A,S,D tuþlarýna basma durumlarýna göre etki
 	   ettiði varlýðýn hareket vektörlerini günceller. */
 	void handlePlayerInput();
+
+	/* Bir sonraki frame'de varlýðýn yerini bulur. */
+	sf::Sprite getNextFrameSprite(float dt);
 };
 
