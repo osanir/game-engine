@@ -23,7 +23,7 @@ public:
 	sf::Vector2f getLayoutSize();
 
 	/* Mevcut state'teki varlýklarý döndürür. */
-	std::vector< Entity * > getCurrentEntities();
+	std::vector< Entity * > *getCurrentEntities();
 
 	// Setters
 	/* Pencere güncellendiðinde bu fonksiyon tetiklenir. 
@@ -35,7 +35,7 @@ public:
 	void setLayoutSize(sf::Vector2f layoutSize);
 
 	/* Mevcut varlýklarý setler. */
-	void setCurrentEntities(std::vector< Entity * > currentEntities);
+	void setCurrentEntities(std::vector< Entity * > *currentEntities);
 private:
 	/* Pencere boyutlarýný tutar. */
 	sf::VideoMode windowBounds;
@@ -44,7 +44,7 @@ private:
 	sf::Vector2f layoutSize;
 
 	/* Mevcut state'teki varlýklarýn referansýný tutar. */
-	std::vector< Entity * > currentEntities;
+	std::vector< Entity * > *currentEntities;
 
 };
 

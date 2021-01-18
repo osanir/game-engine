@@ -33,7 +33,7 @@ void TopDown::update(float dt){
 	entity->collisionShape.setPosition(entity->shape.getPosition());
 	entity->collisionShape.move(entity->movement * dt * entity->movementSpeed);
 	if( entity.ge)*/
-	std::vector<Entity*> currentEntities = globals.getCurrentEntities();
+	std::vector<Entity*> currentEntities = *(globals.getCurrentEntities());
 	int size = currentEntities.size();
 	for(int i = 0; i < size; i++){
 		if( currentEntities[i]->isSolid && checkCollision(currentEntities[i]->getSprite(), this->getNextFrameSprite(dt)) ){
@@ -48,7 +48,7 @@ void TopDown::update(float dt){
 			}
 		}
 	}
-	entity->shape.move(entity->movement * dt * entity->movementSpeed);
+	entity->move(entity->movement * dt * entity->movementSpeed);
 }
 
 void TopDown::handlePlayerInput(){

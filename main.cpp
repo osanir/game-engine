@@ -1,28 +1,13 @@
 #include "Game.h"
-#include "Mouse.h"
 
 class Player : public Entity{
 public:
-	/*
-		Player() :
-		Entity(sf::Vector2f(50, 50), sf::Vector2f(50, 50), sf::Color::Yellow, 400)
-		,topDown(this)
-	{
-	}
-
-	Player(sf::Vector2f position, sf::Vector2f size, sf::Color color, float speed) 
-		: Entity(position, size, color, speed)
-		, topDown(this){
-	
-	}
-	//*/
-
 	Player(std::string fileName)
 		:Entity(fileName)
 		,topDown(this)
 		,scrollTo(this)
 	{
-
+		setMovementSpeed(500);
 	}
 
 	void update(float dt){
@@ -39,34 +24,47 @@ public:
 	Wall(std::string fileName)
 		:Entity(fileName)
 	{
+		setPosition({300,300});
+		isSolid = true;
 	}
 	void update(float dt){
-		
+	}
+};
+
+class Missile : public Entity{
+public:
+	Missile(std::string fileName)
+		:Entity(fileName),
+		bullet(this)
+	{
 	}
 
-	
+	void update(float dt){
+		bullet.update(dt);
+	}
+	Bullet bullet;
 };
 
 class MyGame : public Game{
 public:
-	Player* player;
-	Wall* wall;
-	State* state;
-	Mouse mouse;
+	GameState	state;
+	Player		player;
+	Wall		wall;
+	Missile		missile;
+	Mouse		mouse;
 
-	MyGame(): Game()
+	MyGame(): Game(),
+		state("Map2.config"),
+		player("player.png"),
+		wall("wall.png"),
+		missile("bullet.png")
 	{
-		this->player = new Player("player.png");
-		this->player->setMovementSpeed(500);
-		this->wall = new Wall("wall.png");
-		this->player->scrollTo.setWindow(this->getWindow());
+		player.scrollTo.setWindow(this->getWindow());
 
-		this->state = new GameState("Map2.config");
-		this->wall->isSolid = true;
-		this->wall->setPosition({300,300});
-		this->addState(state);
-		this->addEntity(player);
-		this->addEntity(wall);
+		addState(&state);
+		addEntity(&player);
+		addEntity(&wall);
+		addEntity(&missile);
 	}
 	
 	void OnStart(){
@@ -74,21 +72,20 @@ public:
 	}
 
 	void OnUpdate(){
-		if(player->onCollision(*wall)){
+		if(player.onCollision(wall)){
 			std::cout << "Çarpýþtý" << std::endl;
 		}
 
 		if(mouse.onButtonClicked("left")){
-			std::cout << "Sol buton týklandý. " << std::endl;
+			player.spawnAnotherObject(new Missile("bullet.png"));
 		}
 
-		player->setRotationTowardPosition(this->getMousePosition());
+		player.setRotationTowardPosition(this->getMousePosition());
 	}
 };
 
 int main(){
 	MyGame game;
-
 	game.run();
 	return 0;
 }

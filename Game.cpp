@@ -39,7 +39,8 @@ Game::~Game(){
 	/* Herhangi bir state kalmayana kadar stack'i 
 	   boşaltır ve oyunu bitirir. */
 	while(!this->states.empty()){
-		delete this->states.top();
+		// TODO: Burada çöküyor.
+		//delete this->states.top();
 		this->states.pop();
 	}
 }

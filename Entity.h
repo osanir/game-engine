@@ -27,6 +27,8 @@ public:
 
 	/* Ýlgili objenin katý olma durumudur. Doðruysa katýdýr. */
 	bool isSolid;
+	/* Ýlgili objenin mermi olma durumudur. Doðruysa mermidir. */
+	bool isBullet;
 
 	// Collision
 	/* Ýki entity arasýndaki çarpýþmaý kontrol eder.
@@ -37,12 +39,18 @@ public:
 	bool onCollision(Entity& entity);
 	
 	// Getters
+	/* Varlýðýn hareket vektörünü döndürür. */
+	sf::Vector2f getMovement();
+	/* Varlýðýn hareket hýzýný döndürür. */
+	float getMovementSpeed();
 	/* Varlýðýn sprite'ýný döndürür.*/
 	sf::Sprite getSprite();
 	/* Varlýðýn pozisyonunu döndürür. */
 	sf::Vector2f getPosition();
 	/* Varlýðýn boyutunu döndürür. */
 	sf::Vector2u getSize();
+	/* Varlýðýn açýsýný döndürür. */
+	float getAngle();
 
 	// Setters
 	/* Varlýðýn hareket vektörünü günceller. */
@@ -53,9 +61,14 @@ public:
 	void setPosition(sf::Vector2f newPosition);
 	/* Varlýðýn belirli bir noktaya doðru açýsýný günceller. */
 	void setRotationTowardPosition(sf::Vector2i towardPosition);
+	/* Varlýðýn açýsýný günceller. */
+	void setAngle(float angle);
 
+	// MISC
 	/* Varlýðý bulunduðu pozisyona göre öteler. */
 	void move(sf::Vector2f move);
+	/* Bulunduðu konumda bir baþka varlýk oluþturur. */
+	void spawnAnotherObject(Entity* entity);
 private:
 	/* Varlýðýn hareket vektörünü tutar. */
 	sf::Vector2f movement;
@@ -81,4 +94,5 @@ private:
 	   sýnýflar buraya eklenecek. */
 	friend class TopDown;
 	friend class ScrollTo;
+	friend class Bullet;
 };

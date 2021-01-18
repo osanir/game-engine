@@ -1,7 +1,6 @@
 #include "Mouse.h"
 
 Mouse::Mouse(){
-	this->alreadyClicked = false;
 }
 
 bool Mouse::onButtonDown(std::string button){

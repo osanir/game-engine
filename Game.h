@@ -11,6 +11,8 @@
 #include "Camera.h"
 #include "TopDown.h"
 #include "ScrollTo.h"
+#include "Bullet.h"
+#include "Mouse.h"
 
 /*
 *	    Bu sýnýf oyunun temel oyun döngüsünü baþlatýr. 

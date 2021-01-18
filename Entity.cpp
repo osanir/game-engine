@@ -140,3 +140,29 @@ void Entity::setRotationTowardPosition(sf::Vector2i towardPosition){
 void Entity::move(sf::Vector2f move){
 	this->shape.move(move);
 }
+
+sf::Vector2f Entity::getMovement(){
+	return this->movement;
+}
+
+float Entity::getMovementSpeed(){
+	return this->movementSpeed;
+}
+
+float Entity::getAngle(){
+	return this->shape.getRotation();
+}
+
+void Entity::setAngle(float angle){
+	this->shape.setRotation(angle);
+}
+
+void Entity::spawnAnotherObject(Entity* entity){
+	std::vector<Entity*> *entities = globals.getCurrentEntities();
+	entity->setPosition(this->getPosition());
+	if(entity->isBullet){
+		entity->setAngle(this->getAngle());
+	}
+	entities->push_back(entity);
+	globals.setCurrentEntities(entities);
+}

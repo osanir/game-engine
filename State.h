@@ -51,7 +51,7 @@ public:
 
 	// GETTERS
 	/* State'te bulunan varlýk listesini döndürür. */
-	std::vector<Entity*> getEntities();
+	std::vector<Entity*> *getEntities();
 
 	//void checkEntityCollisions();
 protected:

@@ -13,7 +13,7 @@ sf::Vector2f Globals::getLayoutSize(){
 	return this->layoutSize;
 }
 
-std::vector< Entity * > Globals::getCurrentEntities(){
+std::vector< Entity * > *Globals::getCurrentEntities(){
 	return this->currentEntities;
 }
 
@@ -26,6 +26,6 @@ void Globals::setLayoutSize(sf::Vector2f layoutSize){
 	this->layoutSize = layoutSize;
 }
 
-void Globals::setCurrentEntities(std::vector<Entity*> currentEntities){
+void Globals::setCurrentEntities(std::vector<Entity*> *currentEntities){
 	this->currentEntities = currentEntities;
 }

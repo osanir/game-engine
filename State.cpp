@@ -22,8 +22,8 @@ void State::addEntity(Entity* entity){
 	this->entities.push_back(entity);
 }
 
-std::vector<Entity*> State::getEntities(){
-	return this->entities;
+std::vector<Entity*> *State::getEntities(){
+	return &this->entities;
 }
 
 //bool checkCollision(Entity& e1, Entity& e2){
