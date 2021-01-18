@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Mouse.h"
 
 class Player : public Entity{
 public:
@@ -51,6 +52,7 @@ public:
 	Player* player;
 	Wall* wall;
 	State* state;
+	Mouse mouse;
 
 	MyGame(): Game()
 	{
@@ -72,9 +74,13 @@ public:
 	}
 
 	void OnUpdate(){
-		/*if(player->onCollision(*wall)){
+		if(player->onCollision(*wall)){
 			std::cout << "Çarpýþtý" << std::endl;
-		}*/
+		}
+
+		if(mouse.onButtonClicked("left")){
+			std::cout << "Sol buton týklandý. " << std::endl;
+		}
 
 		player->setRotationTowardPosition(this->getMousePosition());
 	}

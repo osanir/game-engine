@@ -23,7 +23,7 @@ bool checkCollision(Entity& e1, Entity& e2){
 	return e1.getSprite().getGlobalBounds().intersects(e2.getSprite().getGlobalBounds());
 }
 bool checkCollision(sf::Sprite e1, sf::Sprite e2){
-	std::cout << "t1x: " << e1.getPosition().x << "\t e1y: " << e1.getPosition().y << "\t e2x: " << e2.getPosition().x << "\t e2y: " << e2.getPosition().y << std::endl;
+	//std::cout << "t1x: " << e1.getPosition().x << "\t e1y: " << e1.getPosition().y << "\t e2x: " << e2.getPosition().x << "\t e2y: " << e2.getPosition().y << std::endl;
 	return e1.getGlobalBounds().intersects(e2.getGlobalBounds());
 }
 
@@ -37,7 +37,6 @@ void TopDown::update(float dt){
 	int size = currentEntities.size();
 	for(int i = 0; i < size; i++){
 		if( currentEntities[i]->isSolid && checkCollision(currentEntities[i]->getSprite(), this->getNextFrameSprite(dt)) ){
-			std::cout << "Alo" << std::endl;
 
 			sf::Vector2f s1 = currentEntities[i]->getSprite().getPosition();
 			sf::Vector2f s2 = this->getNextFrameSprite(dt).getPosition();

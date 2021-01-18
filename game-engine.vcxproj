@@ -191,6 +191,7 @@
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="ScrollTo.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="TopDown.cpp" />
@@ -203,6 +204,7 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="Mouse.h" />
     <ClInclude Include="ScrollTo.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="TopDown.h" />
