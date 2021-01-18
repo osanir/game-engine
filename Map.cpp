@@ -54,11 +54,11 @@ void Map::readMap(){
         while(openFile >> str){
             if(str != -1){
                 tempMap.push_back(str);
-                std::cout << str;
+                //std::cout << str;
             } else{
                 map_tiles.push_back(tempMap);
                 tempMap.clear();
-                std::cout << std::endl;
+                //std::cout << std::endl;
             }
 
         }

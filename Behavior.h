@@ -1,6 +1,6 @@
 #pragma once
 #include "Entity.h"
-
+#include "Globals.h"
 /*
 *		Bu sýnýf varlýklarýn sahip olduðu davranýþlarý
 *	oluþturan sýnýftýr. Yeni bir davranýþ eklenmek isterse bu 

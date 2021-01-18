@@ -35,14 +35,17 @@ class Missile : public Entity{
 public:
 	Missile(std::string fileName)
 		:Entity(fileName),
-		bullet(this)
+		bullet(this),
+		dol(this)
 	{
 	}
 
 	void update(float dt){
 		bullet.update(dt);
+		dol.update(dt);
 	}
 	Bullet bullet;
+	DestroyOutsideLayout dol;
 };
 
 class MyGame : public Game{
@@ -73,12 +76,18 @@ public:
 
 	void OnUpdate(){
 		if(player.onCollision(wall)){
+			//wall.destroy();
 			std::cout << "Çarpýþtý" << std::endl;
 		}
 
 		if(mouse.onButtonClicked("left")){
 			player.spawnAnotherObject(new Missile("bullet.png"));
 		}
+
+		if(missile.onCollision(wall)){
+			missile.destroy();
+		}
+		std::cout << "Total: " << globals.getCurrentEntities()->size() << std::endl;
 
 		player.setRotationTowardPosition(this->getMousePosition());
 	}

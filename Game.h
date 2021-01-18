@@ -12,6 +12,7 @@
 #include "TopDown.h"
 #include "ScrollTo.h"
 #include "Bullet.h"
+#include "DestroyOutsideLayout.h"
 #include "Mouse.h"
 
 /*
@@ -90,3 +91,4 @@ private:
 	   varlýklar burada tutulur. */
 	std::vector<Entity*> newEntities;
 };
+

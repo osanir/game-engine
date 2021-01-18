@@ -51,6 +51,8 @@ public:
 	sf::Vector2u getSize();
 	/* Varlýðýn açýsýný döndürür. */
 	float getAngle();
+	/* Varlýðýn ID'sini döndürür. */
+	unsigned int getID();
 
 	// Setters
 	/* Varlýðýn hareket vektörünü günceller. */
@@ -63,13 +65,19 @@ public:
 	void setRotationTowardPosition(sf::Vector2i towardPosition);
 	/* Varlýðýn açýsýný günceller. */
 	void setAngle(float angle);
+	/* ID bilgisini günceller. */
+	void setID(unsigned int id);
 
 	// MISC
 	/* Varlýðý bulunduðu pozisyona göre öteler. */
 	void move(sf::Vector2f move);
 	/* Bulunduðu konumda bir baþka varlýk oluþturur. */
 	void spawnAnotherObject(Entity* entity);
+	/* Varlðýý yok eder. */
+	void destroy();
+	
 private:
+	unsigned int uid;
 	/* Varlýðýn hareket vektörünü tutar. */
 	sf::Vector2f movement;
 
@@ -96,3 +104,4 @@ private:
 	friend class ScrollTo;
 	friend class Bullet;
 };
+

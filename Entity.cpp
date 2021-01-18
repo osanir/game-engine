@@ -1,5 +1,6 @@
 #include "Entity.h"
 #include "Globals.h"
+static unsigned int id = 0;
 
 Entity::Entity(){
 	this->shape.setPosition(sf::Vector2f(0, 0));
@@ -43,6 +44,10 @@ Entity::Entity(std::string fileName, float speed, sf::Vector2f position, sf::Vec
 	   (0, 0) noktasının, varlığın merkezi olmasını istediğimiz için
 	   kaplama boyutlarının yarısı olacak şekilde güncelliyoruz. */
 	this->shape.setOrigin(sf::Vector2f(this->texture->getSize().x / 2, this->texture->getSize().y / 2));
+
+	this->uid = id++;
+	std::cout << "uid: " << this->uid << " id: " << id << std::endl;
+
 }
 
 /*
@@ -153,6 +158,10 @@ float Entity::getAngle(){
 	return this->shape.getRotation();
 }
 
+unsigned int Entity::getID(){
+	return this->uid;
+}
+
 void Entity::setAngle(float angle){
 	this->shape.setRotation(angle);
 }
@@ -165,4 +174,26 @@ void Entity::spawnAnotherObject(Entity* entity){
 	}
 	entities->push_back(entity);
 	globals.setCurrentEntities(entities);
+}
+
+void Entity::setID(unsigned int id){
+	this->uid = id;
+}
+
+void Entity::destroy(){
+	std::vector<Entity*>* entities = globals.getCurrentEntities();
+	std::vector<Entity*>::iterator iter = entities->begin();
+	bool found = false;
+	while(iter != entities->end()){
+		if((*iter)->uid == this->uid){
+			found = true;
+			break;
+		}
+		iter++;
+	}
+	if(found){
+		entities->erase(iter);
+	}
+	globals.setCurrentEntities(entities);
+
 }
