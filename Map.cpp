@@ -1,7 +1,6 @@
 #include "Map.h"
 Map::Map(){
     /* createRandomObjects(); */
-    tileset_texture.loadFromFile("Resources/Textures/tilemap.jpg");
     tileset_spr = new sf::Sprite();
     tileset_spr->setTexture(tileset_texture);
     readMap();
@@ -52,7 +51,7 @@ void Map::readMap(){
 
         int str;
         while(openFile >> str){
-            if(str != -1){
+            if(str != -2){
                 tempMap.push_back(str);
                 //std::cout << str;
             } else{
@@ -83,11 +82,11 @@ void Map::readMap(){
 
 void Map::draw(sf::RenderTarget& target, sf::RenderStates states) const{
     for(int y = 0; y < map_tiles.size(); y++){
-        for(int x = 0; x < map_tiles[1].size(); x++){
+        for(int x = 0; x < map_tiles[0].size(); x++){
             //tek bir sprite ýn boyutu kadar yer ayýr
             tileset_spr->setPosition(x * tilemapData.gridWidth, y * tilemapData.gridHeight);
             //resimden parça parça seç
-            tileset_spr->setTextureRect(sf::IntRect(map_tiles[y][x] * tilemapData.gridWidth, 0, tilemapData.gridWidth, tilemapData.gridHeight));
+            tileset_spr->setTextureRect(sf::IntRect(map_tiles[y][x] / map_tiles[0].size() * tilemapData.gridWidth , map_tiles[y][x] / map_tiles.size() * tilemapData.gridHeight, tilemapData.gridWidth, tilemapData.gridHeight));
             target.draw(*tileset_spr);
         }
     }

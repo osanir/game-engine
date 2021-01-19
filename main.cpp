@@ -4,17 +4,21 @@ class Player : public Entity{
 public:
 	Player(std::string fileName)
 		:Entity(fileName)
-		,topDown(this)
+		//,topDown(this)
+		,platform(this)
 		,scrollTo(this)
 	{
+		setPosition(sf::Vector2f(300, 100));
 		setMovementSpeed(500);
 	}
 
 	void update(float dt){
-		topDown.update(dt);
+		//topDown.update(dt);
+		platform.update(dt);
 		scrollTo.update(dt);
 	}
-	TopDown topDown;
+	//TopDown topDown;
+	Platform platform;
 	ScrollTo scrollTo;
 
 };
@@ -57,8 +61,8 @@ public:
 	Mouse		mouse;
 
 	MyGame(): Game(),
-		state("Map2.config"),
-		player("player.png"),
+		state("Map.config"),
+		player("hitman.png"),
 		wall("wall.png"),
 		missile("bullet.png")
 	{

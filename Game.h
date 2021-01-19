@@ -10,6 +10,7 @@
 #include "GameState.h"
 #include "Camera.h"
 #include "TopDown.h"
+#include "Platform.h"
 #include "ScrollTo.h"
 #include "Bullet.h"
 #include "DestroyOutsideLayout.h"

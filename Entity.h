@@ -101,6 +101,7 @@ private:
 	   Yeni eklenecek bütün Behavior sýnýfýndan kalýtýlan
 	   sýnýflar buraya eklenecek. */
 	friend class TopDown;
+	friend class Platform;
 	friend class ScrollTo;
 	friend class Bullet;
 };
