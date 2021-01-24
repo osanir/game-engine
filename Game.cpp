@@ -129,7 +129,8 @@ void Game::update(){
 }
 
 void Game::render(){
-	this->window.clear(sf::Color::White);
+	//this->window.clear(sf::Color::White);
+	this->window.clear(sf::Color(128, 190, 31));
 	/* Ekrana çizdirme olaylarý burada gerçekleþiyor. */
 	if(!this->states.empty()){
 		/* State sýnýflarý da sf::Drawable sýnýfýndan 

@@ -83,6 +83,7 @@ void Map::readMap(){
 void Map::draw(sf::RenderTarget& target, sf::RenderStates states) const{
     for(int y = 0; y < map_tiles.size(); y++){
         for(int x = 0; x < map_tiles[0].size(); x++){
+            if(map_tiles[y][x] == -1) continue;
             //tek bir sprite ýn boyutu kadar yer ayýr
             tileset_spr->setPosition(x * tilemapData.gridWidth, y * tilemapData.gridHeight);
             //resimden parça parça seç

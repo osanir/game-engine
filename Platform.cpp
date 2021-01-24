@@ -32,7 +32,7 @@ void Platform::update(float dt){
 	entity->collisionShape.move(entity->movement * dt * entity->movementSpeed);
 	if( entity.ge)*/
 	std::vector<Entity*> currentEntities = *(globals.getCurrentEntities());
-	entity->movement.y += 0.05f;
+	entity->movement.y += 0.020f;
 	int size = currentEntities.size();
 	for(int i = 0; i < size; i++){
 		if(currentEntities[i]->isSolid && checkCollision(currentEntities[i]->getSprite(), this->getNextFrameSprite(dt))){
