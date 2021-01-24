@@ -4,7 +4,6 @@ Map::Map(){
     tileset_spr = new sf::Sprite();
     tileset_spr->setTexture(tileset_texture);
     readMap();
-    initMap();
 }
 
 Map::Map(std::string configFileName){
@@ -27,8 +26,9 @@ Map::Map(std::string configFileName){
     tileset_texture.loadFromFile("Resources/Textures/" + tilemapData.fileName);
     tileset_spr = new sf::Sprite();
     tileset_spr->setTexture(tileset_texture);
+    tilemapData.gridCountWidth = this->tileset_texture.getSize().x / tilemapData.gridWidth;
+    tilemapData.gridCountHeight = this->tileset_texture.getSize().y / tilemapData.gridHeight;
     readMap();
-    initMap();
 }
 
 /* void Map::createRandomObjects(){
@@ -86,7 +86,11 @@ void Map::draw(sf::RenderTarget& target, sf::RenderStates states) const{
             //tek bir sprite ýn boyutu kadar yer ayýr
             tileset_spr->setPosition(x * tilemapData.gridWidth, y * tilemapData.gridHeight);
             //resimden parça parça seç
-            tileset_spr->setTextureRect(sf::IntRect(map_tiles[y][x] / map_tiles[0].size() * tilemapData.gridWidth , map_tiles[y][x] / map_tiles.size() * tilemapData.gridHeight, tilemapData.gridWidth, tilemapData.gridHeight));
+            // map_tile[y][x] * gridWidth
+            int left, top;
+            left = (map_tiles[y][x] % tilemapData.gridCountWidth ) * tilemapData.gridWidth;
+            top  = (map_tiles[y][x] / tilemapData.gridCountHeight) * tilemapData.gridHeight;
+            tileset_spr->setTextureRect(sf::IntRect(left, top, tilemapData.gridWidth, tilemapData.gridHeight));
             target.draw(*tileset_spr);
         }
     }
@@ -96,27 +100,6 @@ sf::Vector2f Map::getLayoutSize(){
     return sf::Vector2f(map_tiles[0].size() * tilemapData.gridWidth, map_tiles.size() * tilemapData.gridHeight);
 }
 
-void Map::initMap(){
-
-    for(int y = 0; y < map_tiles.size(); y++){
-        for(int x = 0; x < map_tiles[1].size(); x++){
-            //tek bir sprite ýn boyutu kadar yer ayýr
-            tileset_spr->setPosition(x * tilemapData.gridWidth, y * tilemapData.gridHeight);
-            //resimden parça parça seç
-            tileset_spr->setTextureRect(sf::IntRect(map_tiles[y][x] * tilemapData.gridWidth, 0, tilemapData.gridWidth, tilemapData.gridHeight));
-            if(map_tiles[y][x] == 0){
-
-                sf::RectangleShape* shape = new sf::RectangleShape({(float)tilemapData.gridWidth, (float)tilemapData.gridHeight});
-                shape->setFillColor(sf::Color::Black);
-                shape->setPosition({(float)x * tilemapData.gridWidth  , (float)y * tilemapData.gridHeight});
-                solidObjects.push_back(shape);
-
-            }
-        }
-    }
-
-
-}
 std::list<sf::RectangleShape*> Map::getSolidObjets(){
     return solidObjects;
 }

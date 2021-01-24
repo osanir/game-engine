@@ -29,13 +29,14 @@ struct TilemapData{
     int offsetY;
     int spaceX;
     int spaceY;
+    int gridCountWidth;
+    int gridCountHeight;
 };
 // TODO: fix aþaðý 1'den fazla numaralý tile'lar'a eriþemiyor.
 class Map : public sf::Drawable{
 public:
     Map();
     Map(std::string fileName);
-    void initMap();
     std::list<sf::RectangleShape*> getSolidObjets();
     void readMap();
     //void drawTile(sf::RenderWindow& window);
@@ -51,7 +52,6 @@ private:
     sf::Sprite* tileset_spr;
     std::vector <std::vector<int> > map_tiles;
     std::list<sf::RectangleShape*> solidObjects;
-
     TilemapData tilemapData;
 
 };

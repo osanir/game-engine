@@ -43,7 +43,6 @@ public:
 		bullet(this),
 		dol(this)
 	{
-		bullet.setSpeed(1000);
 	}
 
 	void update(float dt){
