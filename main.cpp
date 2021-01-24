@@ -1,11 +1,12 @@
 #include "Game.h"
+#include "Logger.h"
 
 class Player : public Entity{
 public:
 	Player(std::string fileName)
 		:Entity(fileName)
-		//,topDown(this)
-		,platform(this)
+		,topDown(this)
+		//,platform(this)
 		,scrollTo(this)
 	{
 		setPosition(sf::Vector2f(300, 100));
@@ -13,12 +14,12 @@ public:
 	}
 
 	void update(float dt){
-		//topDown.update(dt);
-		platform.update(dt);
+		topDown.update(dt);
+		//platform.update(dt);
 		scrollTo.update(dt);
 	}
-	//TopDown topDown;
-	Platform platform;
+	TopDown topDown;
+	//Platform platform;
 	ScrollTo scrollTo;
 
 };
@@ -60,6 +61,7 @@ public:
 	Missile		missile;
 	Mouse		mouse;
 
+
 	MyGame(): Game(),
 		state("Map.config"),
 		player("hitman.png"),
@@ -75,7 +77,7 @@ public:
 	}
 	
 	void OnStart(){
-
+		player.scrollTo.setWindow(this->getWindow());
 	}
 
 	void OnUpdate(){
@@ -85,7 +87,7 @@ public:
 		}
 
 		if(mouse.onButtonClicked("left")){
-			player.spawnAnotherObject(new Missile("bullet.png"));
+			player.spawnAnotherObject(new Missile("bulletRed.png"));
 		}
 
 		if(missile.onCollision(wall)){
