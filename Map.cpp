@@ -83,14 +83,14 @@ void Map::readMap(){
 void Map::draw(sf::RenderTarget& target, sf::RenderStates states) const{
     for(int y = 0; y < map_tiles.size(); y++){
         for(int x = 0; x < map_tiles[0].size(); x++){
-            if(map_tiles[y][x] == -1) continue;
+            if(map_tiles[y][x] == 0) continue;
             //tek bir sprite ýn boyutu kadar yer ayýr
             tileset_spr->setPosition(x * tilemapData.gridWidth, y * tilemapData.gridHeight);
             //resimden parça parça seç
             // map_tile[y][x] * gridWidth
             int left, top;
-            left = (map_tiles[y][x] % tilemapData.gridCountWidth ) * tilemapData.gridWidth;
-            top  = (map_tiles[y][x] / tilemapData.gridCountHeight) * tilemapData.gridHeight;
+            left = ((map_tiles[y][x] - 1) % tilemapData.gridCountWidth ) * tilemapData.gridWidth;
+            top  = ((map_tiles[y][x] - 1) / tilemapData.gridCountWidth) * tilemapData.gridHeight;
             tileset_spr->setTextureRect(sf::IntRect(left, top, tilemapData.gridWidth, tilemapData.gridHeight));
             target.draw(*tileset_spr);
         }
