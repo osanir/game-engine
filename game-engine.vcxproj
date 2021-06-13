@@ -197,6 +197,7 @@
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="ScrollTo.cpp" />
+    <ClCompile Include="Solid.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="TopDown.cpp" />
   </ItemGroup>
@@ -214,6 +215,7 @@
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="ScrollTo.h" />
+    <ClInclude Include="Solid.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="TopDown.h" />
   </ItemGroup>

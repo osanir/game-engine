@@ -6,6 +6,7 @@
 #include <fstream>
 #include <vector>
 #include "Globals.h"
+#include "Solid.h"
 
 // TODO: Ýçe aktarmada bazý sorunlar var yeniden yazýlmasý gerekebilir.
 // TODO: Konfigürasyon dosyasýndaki offset ve spacing 
@@ -37,8 +38,9 @@ class Map : public sf::Drawable{
 public:
     Map();
     Map(std::string fileName);
-    std::list<sf::RectangleShape*> getSolidObjets();
+    std::vector<Solid*> getSolidObjets();
     void readMap();
+    void createSolidObjects();
     //void drawTile(sf::RenderWindow& window);
     void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
@@ -51,7 +53,7 @@ private:
     sf::Texture tileset_texture;
     sf::Sprite* tileset_spr;
     std::vector <std::vector<int> > map_tiles;
-    std::list<sf::RectangleShape*> solidObjects;
+    std::vector<Solid*> solidObjects;
     TilemapData tilemapData;
 
 };

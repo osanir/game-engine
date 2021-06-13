@@ -49,6 +49,7 @@ public:
 	/* Mevcut state'e yeni varlýk eklemek için kullanýlýr. */
 	void addEntity(Entity* entity);
 
+	void createSolidEntities();
 	// GETTERS
 	/* State'te bulunan varlýk listesini döndürür. */
 	std::vector<Entity*> *getEntities();

@@ -61,6 +61,10 @@ public:
 	void setMovementSpeed(float movementSpeed);
 	/* Varlýðýn pozisyonunu günceller. */
 	void setPosition(sf::Vector2f newPosition);
+	/* Varlýðýn boyutunu günceller. */
+	void setSize(sf::Vector2f newSize);
+	/* Varlýðýn merkez noktasýný deðiþtirir. */
+	void setOrigin(sf::Vector2f newOrigin);
 	/* Varlýðýn belirli bir noktaya doðru açýsýný günceller. */
 	void setRotationTowardPosition(sf::Vector2i towardPosition);
 	/* Varlýðýn açýsýný günceller. */
@@ -83,6 +87,7 @@ private:
 
 	/* Varlýðýn hareket hýzýný tutar. */
 	float movementSpeed;
+	float jumpStrength;
 	// TODO: Acceleration, deceleration eklenecek. 
 
 	/* sf::Drawable sýnýfýndan türetildiði için yazýlmasý

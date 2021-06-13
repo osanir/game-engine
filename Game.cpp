@@ -111,6 +111,7 @@ void Game::init(){
 	this->initEntities();
 
 	globals.setCurrentEntities(this->states.top()->getEntities());
+	this->states.top()->createSolidEntities();
 }
 
 void Game::update(){

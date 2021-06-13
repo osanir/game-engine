@@ -18,9 +18,23 @@ Platform::Platform(Entity* entity) : Behavior(entity){
 
 // TODO: feature TopDown davranýþýna sahip varlýk katý objelerin içinden geçmemeli.
 bool Platform::checkCollision(Entity& e1, Entity& e2){
+	/*sf::FloatRect obj1 = e1.getSprite().getGlobalBounds();
+	obj1.width *= e1.getSprite().getScale().x;
+	obj1.height *= e1.getSprite().getScale().y;
+	sf::FloatRect obj2 = e2.getSprite().getGlobalBounds();
+	obj2.width *= e2.getSprite().getScale().x;
+	obj2.height *= e2.getSprite().getScale().y;
+	return obj1.intersects(obj2);*/
 	return e1.getSprite().getGlobalBounds().intersects(e2.getSprite().getGlobalBounds());
 }
 bool Platform::checkCollision(sf::Sprite e1, sf::Sprite e2){
+	/*sf::FloatRect obj1 = e1.getGlobalBounds();
+	obj1.width *= e1.getScale().x;
+	obj1.height*= e1.getScale().y;
+	sf::FloatRect obj2 = e2.getGlobalBounds();
+	obj2.width *= e2.getScale().x;
+	obj2.height *= e2.getScale().y;
+	return obj1.intersects(obj2);*/
 	//std::cout << "t1x: " << e1.getPosition().x << "\t e1y: " << e1.getPosition().y << "\t e2x: " << e2.getPosition().x << "\t e2y: " << e2.getPosition().y << std::endl;
 	return e1.getGlobalBounds().intersects(e2.getGlobalBounds());
 }
@@ -71,7 +85,7 @@ sf::Sprite Platform::getNextFrameSprite(float dt){
 	sf::Sprite nextSprite(this->entity->getSprite());
 	sf::Vector2f nextPos(this->entity->getPosition());
 	nextPos.x += this->entity->movement.x * dt * this->entity->movementSpeed;
-	nextPos.y += this->entity->movement.y * dt * this->entity->movementSpeed;
+	nextPos.y += this->entity->movement.y * dt * this->entity->jumpStrength;
 	nextSprite.setPosition(nextPos);
 	return nextSprite;
 }

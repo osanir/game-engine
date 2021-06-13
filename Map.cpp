@@ -67,6 +67,34 @@ void Map::readMap(){
     globals.setLayoutSize(this->getLayoutSize());
 }
 
+void Map::createSolidObjects(){
+    std::string fileName = "Resources/Maps/";
+    fileName += "platformFrog_Solid.txt";
+    // TODO: Config dosyasýna objeler için eklenecek dosya adýný kullanarak içe aktar.
+    std::ifstream file(fileName);
+    int objectCount = 0;
+    if(!file.is_open()){
+        // Print error
+        return;
+    }
+    file >> objectCount;
+    for(int i = 0; i < objectCount; i++){
+        Solid* solid = new Solid("solid.png");
+        int x, y, w, h;
+        file >> x >> y >> w >> h;
+        solid->setOrigin(sf::Vector2f(0, 0));
+        solid->setPosition(sf::Vector2f(x, y));
+        solid->setSize(sf::Vector2f(w, h));
+        this->solidObjects.push_back(solid);
+    }
+    std::vector<Entity*> *currentEntities = globals.getCurrentEntities();
+    for(auto entity : this->solidObjects){
+        currentEntities->push_back(entity);
+    }
+    globals.setCurrentEntities(currentEntities);
+    file.close();
+}
+
 //void Map::drawTile(sf::RenderWindow& window){
 //
 //    for(int y = 0; y < map_tiles.size(); y++){
@@ -101,6 +129,6 @@ sf::Vector2f Map::getLayoutSize(){
     return sf::Vector2f(map_tiles[0].size() * tilemapData.gridWidth, map_tiles.size() * tilemapData.gridHeight);
 }
 
-std::list<sf::RectangleShape*> Map::getSolidObjets(){
+std::vector<Solid*> Map::getSolidObjets(){
     return solidObjects;
 }

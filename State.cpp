@@ -22,6 +22,10 @@ void State::addEntity(Entity* entity){
 	this->entities.push_back(entity);
 }
 
+void State::createSolidEntities(){
+	this->map->createSolidObjects();
+}
+
 std::vector<Entity*> *State::getEntities(){
 	return &this->entities;
 }

@@ -9,6 +9,7 @@ Entity::Entity(){
 
 	this->movement = sf::Vector2f(0, 0);
 	this->movementSpeed = 300;
+	this->jumpStrength = 900;
 }
 
 Entity::Entity(sf::Vector2f position, sf::Vector2f size, sf::Color color, float speed){
@@ -17,6 +18,7 @@ Entity::Entity(sf::Vector2f position, sf::Vector2f size, sf::Color color, float 
 	//this->shape.setFillColor(color);
 	this->movement = sf::Vector2f(0, 0);
 	this->movementSpeed = speed;
+	this->jumpStrength = speed * 3;
 }
 
 Entity::Entity(std::string fileName, float speed, sf::Vector2f position, sf::Vector2f scale){
@@ -38,6 +40,7 @@ Entity::Entity(std::string fileName, float speed, sf::Vector2f position, sf::Vec
 	   Bunu incelemek için Constructor'ýn prototipi incelenmelidir. */
 	this->movement = movement;
 	this->movementSpeed = speed;
+	this->jumpStrength = speed * 3;
 	this->shape.setScale(scale);
 
 	/* Varlýðýn origini varsayýlan olarak sol üst köþedir. 
@@ -176,8 +179,19 @@ void Entity::spawnAnotherObject(Entity* entity){
 	globals.setCurrentEntities(entities);
 }
 
+void Entity::setSize(sf::Vector2f newSize){
+	sf::Vector2f scaleFactor;
+	scaleFactor.x = newSize.x / this->getSize().x;
+	scaleFactor.y = newSize.y / this->getSize().y;
+	this->shape.setScale(scaleFactor);
+}
+
 void Entity::setID(unsigned int id){
 	this->uid = id;
+}
+
+void Entity::setOrigin(sf::Vector2f newOrigin){
+	this->shape.setOrigin(newOrigin);
 }
 
 void Entity::destroy(){
